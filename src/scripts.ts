@@ -4,6 +4,7 @@ import {Parcel} from '@parcel/core';
 const bundler = new Parcel({
   entries: 'src/index.ts',
   defaultConfig: '@parcel/config-default',
+  shouldDisableCache: true,
   mode: 'production',
   targets: {
     test: {
@@ -11,12 +12,15 @@ const bundler = new Parcel({
       distDir: 'dist2',
     },
   },
+  defaultTargetOptions: {
+    shouldScopeHoist: true,
+  },
+  additionalReporters: [
+    {
+      packageName: '@parcel/reporter-cli',
+      resolveFrom: __filename,
+    },
+  ],
 });
 
-const main = async () => {
-  const {bundleGraph, buildTime} = await bundler.run();
-  const bundles = bundleGraph.getBundles();
-  console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
-};
-
-main();
+bundler.run();
