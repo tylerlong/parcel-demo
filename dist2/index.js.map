@@ -1,0 +1,1 @@
+{"mappings":"ysCAAAA,QAAQC,IAAI,Q","sources":["src/index.ts"],"sourcesContent":["console.log('Hello');\n"],"names":["console","log"],"version":3,"file":"index.js.map","sourceRoot":"../"}
